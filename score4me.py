@@ -17,10 +17,10 @@ logging.basicConfig(
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(
         chat_id=update.effective_chat.id, 
-        text="Hello, check livescores with ease!")
+        text="Hello, tap /score to check livescores!")
     
 async def score(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    script_path = "livescores.py"
+    script_path = "scores.py"
     subprocess.call(["python", script_path])
     await context.bot.send_message(
         chat_id=update.effective_chat.id, 

@@ -11,7 +11,7 @@ response = requests.request("GET", url, data=payload, headers=headers)
 json_data = json.loads(response.text)
 
 def get_scores():
-    final_string = ""
+    final = ''
     for i in json_data["events"]:
         league = i["tournament"]["name"]
         home_team = i["homeTeam"]["name"]
@@ -21,8 +21,26 @@ def get_scores():
         h_score = i["homeScore"]["current"]
         a_score = i["awayScore"]["current"]
 
-        report = f"{league}\n{home_team} : {h_score} | {a_score} : {away_team}"
-        final_report = f"\n {report}"
-        return final_report
+        report = f"\n{league}\n{home_team} : {h_score} | {a_score} : {away_team}"
+        final = final+report
+    return final
 
-get_scores()
+# def get_teamscores(team="Your team"):
+#     final = ''
+#     for i in json_data["events"]:
+#         league = i["tournament"]["name"]
+#         home_team = i["homeTeam"]["name"]
+#         away_team = i["awayTeam"]["name"]
+#         h_score = i["homeScore"]["current"]
+#         a_score = i["awayScore"]["current"]
+
+#         if team in home_team or team in away_team:
+#             report = f"\n{league}\n{home_team} : {h_score} | {a_score} : {away_team}"
+#             final = final+report
+#     return final
+
+# sc = get_teamscores('Real')
+# print(sc)
+
+# sc = get_scores()
+# print(sc[:100])
