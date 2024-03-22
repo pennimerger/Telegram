@@ -1,6 +1,5 @@
 """My_BinanceBot on Telegram."""
 import logging, os, io, datetime, pandas as pd
-from dotenv import load_dotenv
 from matplotlib import pyplot as plt
 from binance import Client
 from telegram import Update, ForceReply
@@ -55,7 +54,7 @@ async def get_btc_usdt(update: Update, context: CallbackContext) -> None:
 
     await update.message.reply_photo(img)
 
-def main() -> None:
+if __name__=="__main__":
     application = ApplicationBuilder().token(T_API_KEY).build()
     
     start_handler = CommandHandler('start', start)
@@ -66,6 +65,3 @@ def main() -> None:
     application.add_handler(btc_usdt_handler)
     
     application.run_polling()
-
-if __name__=="__main__":
-    main()
